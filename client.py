@@ -87,7 +87,7 @@ class Client():
         # https://stackoverflow.com/questions/43471696/sending-data-to-a-thread-in-python
         self.sync_connected_queue = queue.Queue()
 
-        # self.numberOfImages = 0
+        self.numberOfImages = 0
         self.debug_image_queue = None
         # self.testimage = 0
 
@@ -282,7 +282,7 @@ class Client():
             # # self.controllerID = data
             # self.image_viewer.set_controllerID(data)
             # ImageController.parseReigsterViewResp(self.m_client, data)
-            self.sync_connected_queue.put(connect_response)
+            # self.sync_connected_queue.put(connect_response)
 
         # elif cmd == command_REQUEST_FILE_LIST:
         #     print("response:REQUEST_FILE_LIST:")
@@ -345,10 +345,10 @@ class Client():
                     #         dprint("not ipython, so do no show image after saving")
 
                 # global numberOfImages
-                # self.numberOfImages += 1
-                # if self.numberOfImages == 2:
-                #     print("get dummy 2 images")
-                #     self.sync_connected_queue.put(connect_response)
+                self.numberOfImages += 1
+                if self.numberOfImages == 2:
+                  print("get dummy 2 images")
+                  self.sync_connected_queue.put(connect_response)
             elif "cmd" in fields:
                 self.receive_response(fields)
             #2.  remove it, may not be necessary for Browser, just aligh with React JS Browser client
